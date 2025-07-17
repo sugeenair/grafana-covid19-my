@@ -6,18 +6,17 @@ The visualizations are intended strictly for internal use and analytical purpose
 MoH Github <--- linux_box (bash-script) ---> mysql <--- grafana <---> nginx <--- user
 # Moh Github source
 https://github.com/MoH-Malaysia/covid19-public/tree/main/epidemic
-# The setup consits of the following components:
+# The setup consists of the following components
 1. OS: RHEL 8.6
 2. Database: MySQL 8.0+
-# Database schema
-Refer to /mysql/schema.txt
-3. NGNIX
-# NGINX config
-Refer to /nginx/config.txt
-4. Bash script
-# Bash scripts
-Refer to /linux-bash/*.sh
-5. Grafana 12+ Enterprise (Free & unlicensed)
-# Grafana JSON Model
-Refer to /grafana/json-model.txt. 
-
+3. Web Server/Reverse Proxy: NGNIX
+4. ETL: bash scripts
+5. Grafana: 12+ Enterprise (Free & unlicensed)
+# Configuration
+1. Install mysql and create database schema
+- /mysql/schema.txt
+2. Install grafana > setup mysql connection > load JSON Model to new datasource
+- /grafana/json-model.txt
+3. Install nginx and configure reverse proxy to grafana
+- nginx/config.txt
+4. Load the bash scripts
