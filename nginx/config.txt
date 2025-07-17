@@ -1,0 +1,30 @@
+===================================
+[ Nginx Reverse Proxy for Grafana ] 
+===================================
+# yum install nginx
+# nginx -v
+# systemctl start nginx
+# systemctl status nginx
+# firewall-cmd --get-services
+# firewall-cmd --permanent --add-service=http
+# firewall-cmd --reload
+# firewall-cmd --list-all
+# cd /etc/nginx/conf.d
+# touch grafana.<hostname>
+# vi 
+server {
+  listen      80;
+  listen      [::]:80 ipv6only=on;
+  server_name <hostname>;
+  root /usr/share/nginx/html;
+  index index.html index.htm;
+
+  location /grafana/ {
+   proxy_pass http://localhost:3000/;
+   proxy_set_header Host $host;
+   proxy_set_header X-Real-IP $remote_addr;
+   proxy_set_header X-Forwarded-Host $host;
+   proxy_set_header X-Forwarded-Server $host;
+   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}
