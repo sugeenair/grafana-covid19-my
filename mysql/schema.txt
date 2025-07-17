@@ -197,3 +197,16 @@ CREATE TABLE my_covid_vax(
     c_time DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (id)
 );
+
+CREATE TABLE my_population(
+    id INT NOT NULL AUTO_INCREMENT,
+    state VARCHAR(15) NOT NULL,
+    idxs INT NOT NULL,
+    pop INT NOT NULL,
+    pop_18 INT NOT NULL,
+    pop_60 INT NOT NULL,
+    pop_12 INT NOT NULL,
+    pop_5 INT NOT NULL,
+    c_time DATETIME NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (id)
+);
