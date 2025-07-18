@@ -15,8 +15,9 @@ https://github.com/MoH-Malaysia/covid19-public/tree/main/epidemic
 # Configuration
 1. Install mysql and create database schema
 - /mysql/schema.txt
-2. Install grafana > setup mysql connection > load JSON Model to new datasource
+2. Install grafana > setup mysql connection > load JSON Model to the new dashboard
 - /grafana/json-model.txt
 3. Install nginx and configure reverse proxy to grafana
 - nginx/config.txt
-4. Load the bash scripts
+4. Setup and execute the bash scripts
+5. Access the project via http://<hostname>/grafana
