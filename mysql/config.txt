@@ -1,0 +1,49 @@
+=========
+[ MySQL ] 
+=========
+1. Download and Install MySQL
+# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-server-8.0.37-1.el8.x86_64.rpm
+# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-client-8.0.37-1.el8.x86_64.rpm
+# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-common-8.0.37-1.el8.x86_64.rpm
+# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-client-plugins-8.0.37-1.el8.x86_64.rpm
+# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-libs-8.0.37-1.el8.x86_64.rpm
+# wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-community-icu-data-files-8.0.37-1.el8.x86_64.rpm
+# rpm -ivh mysql-community-client-plugins-8.0.37-1.el8.x86_64.rpm
+# rpm -ivh mysql-community-common-8.0.37-1.el8.x86_64.rpm
+# rpm -ivh mysql-community-libs-8.0.37-1.el8.x86_64.rpm
+# rpm -ivh mysql-community-client-8.0.37-1.el8.x86_64.rpm
+# rpm -ivh mysql-community-icu-data-files-8.0.37-1.el8.x86_64.rpm
+# rpm -ivh mysql-community-server-8.0.37-1.el8.x86_64.rpm
+
+2. Start and Enable MySQL service
+# systemctl start mysqld
+# systemctl enable mysqld
+# mysql --version
+
+3. Secure MySQL installation
+# grep 'temporary password' /var/log/mysqld.log
+# mysql_secure_installation
+> Enter temporary password
+> Enter New password = <password>
+> Change the password for root ? ((Press y|Y for Yes, any other key for No) : Y
+> Enter New password = <password>
+> Remove anonymous users? (Press y|Y for Yes, any other key for No) : Y
+> Disallow root login remotely? (Press y|Y for Yes, any other key for No) : Y
+> Reload privilege tables now? (Press y|Y for Yes, any other key for No) : Y
+
+4. Create Covid19 database
+# mysql -u root -p
+mysql> create database covid19_MY;
+mysql> CREATE USER 'gadmin'@'localhost' IDENTIFIED WITH mysql_native_password BY '<password>';
+mysql> GRANT ALL PRIVILEGES ON covid19_MY.* TO 'gadmin'@'localhost';
+mysql> CREATE USER 'gadmin'@'%' IDENTIFIED WITH mysql_native_password BY '<password>';
+mysql> GRANT ALL PRIVILEGES ON covid19_MY.* TO 'gadmin'@'%';
+mysql> FLUSH PRIVILEGES;
+mysql> SELECT * FROM mysql.user;
+mysql> exit
+
+5. Verify access via localhost
+# mysql -h localhost -u root -p
+
+6. Restart MySQL service 
+# systemctl restart mysqld
